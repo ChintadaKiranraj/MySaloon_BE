@@ -54,8 +54,8 @@ const loginValidation = function(req,res){
             let responseData = result._previousDataValues;
             let token = authenticate.generateToken(responseData)
             response2.status = true
-            let response  = ExceptionHandling.success('s');
-            response.data = token;
+            let response  = ExceptionHandling.success(result._previousDataValues);
+            response.token = token;
             res.send(response);
         }})
 
