@@ -47,13 +47,17 @@ const loginValidation = function(req,res){
     try{
         let response = registractionImpl.loginValidation(req);
         response.then((result)=>{
+            if(!result){
+                res.send(ExceptionHandling.failuer("user not found"));
+
+            }else{
             let responseData = result._previousDataValues;
             let token = authenticate.generateToken(responseData)
             response2.status = true
             let response  = ExceptionHandling.success('s');
             response.data = token;
             res.send(response);
-        })
+        }})
 
     }catch(err){
         console.log(err)
