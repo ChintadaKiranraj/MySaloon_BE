@@ -5,7 +5,7 @@ function success(data){
     let  responseData = encodedecoding.encode(data);
     response.message = 'sucess!',
     response.status = true,
-    response.data = responseData
+    response.data = data
     return response;
 }
 
