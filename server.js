@@ -4,10 +4,16 @@ const bookingContoller = require('./contoller/BookingDetailsContoller')
 const authenticate = require('./Authorization')
 const app = express();
 
-app.listen(3001, () => {
-  console.log('server started on port 3000');
+app.listen(4001, () => {
+  console.log('server started on port 4001');
 });
 app.use(express.json())
+const cors = require("cors");
+app.use(cors({
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200,
+    credentials: true,
+}));
 
 app.post('/registraction-logn',loginController.loginRegistration);
 app.get('/fetch-registaction-details',authenticate.authenticate,loginController.fetchRegistrationDetails);
