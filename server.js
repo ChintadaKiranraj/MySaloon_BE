@@ -14,6 +14,6 @@ app.get('/fetch-registaction-details',authenticate.authenticate,loginController.
 app.post('/save-booking-details',authenticate.authenticate,bookingContoller.saveBookingDetails);
 app.get('/fetch-booking-details',authenticate.authenticate,bookingContoller.fetchBookingDetails);
 app.delete('/remove-booking-details',authenticate.authenticate,bookingContoller.removeBookingDetails);
-app.get('/fetch-booking-details-byid',authenticate.authenticate,bookingContoller.fetchBookingDetailsById);
+app.post('/fetch-booking-details-byid',authenticate.authenticate,bookingContoller.fetchBookingDetailsById);
 app.put('/update-booking-details-byid',authenticate.authenticate,bookingContoller.updateBookingDetails);
-app.get('/validation',loginController.loginValidation);
+app.post('/validation',loginController.loginValidation);

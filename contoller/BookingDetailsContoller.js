@@ -11,7 +11,10 @@ const saveBookingDetails = function(req,res){
         res.send(ExceptionHandling.success(result._previousDataValues));
     }).catch((err)=>{
         console.log(err);
-        res.send(ExceptionHandling.failuer(err.parent.detail));
+        if(err.message != undefined){
+            res.send(ExceptionHandling.failuer(err.message))
+        }else{
+        res.send(ExceptionHandling.failuer(err.parent.detail));}
     })
     }catch(err){
         console.log("Success"+err);

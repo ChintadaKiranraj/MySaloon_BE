@@ -20,6 +20,10 @@ const BookingDetailsEntity = seq.define('booking_details', {
     status: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    regEmialId: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     tableName: 'booking_details',
