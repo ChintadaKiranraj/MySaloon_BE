@@ -3,20 +3,25 @@ const sequelize = require('../database/postgreSQL');
 const seq = sequelize.sequences;
 
 const Registration = seq.define('registration', {
-    email_id: {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true
+    },
+    emailId: {
     type: DataTypes.STRING,
     allowNull: false,
     primaryKey:true
   },
-  first_name: {
+  firstName: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  last_name: {
+  lastName: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  phone_number: {
+  phoneNumber: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -24,12 +29,12 @@ const Registration = seq.define('registration', {
     type: DataTypes.STRING,
     allowNull:false
   },
-  confirm_password: {
+  confirmPassword: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  access_level: {
-    type: DataTypes.STRING,
+  accessLevel: {
+    type: DataTypes.INTEGER,
     allowNull: true
   }},{ 
     tableName: 'registration', 

@@ -9,7 +9,7 @@ app.listen(3001, () => {
 });
 app.use(express.json())
 
-app.post('/registraction-logn',authenticate.authenticate,loginController.loginRegistration);
+app.post('/registraction-logn',loginController.loginRegistration);
 app.get('/fetch-registaction-details',authenticate.authenticate,loginController.fetchRegistrationDetails);
 app.post('/save-booking-details',authenticate.authenticate,bookingContoller.saveBookingDetails);
 app.get('/fetch-booking-details',authenticate.authenticate,bookingContoller.fetchBookingDetails);
