@@ -23,14 +23,13 @@ function fetchBookingDetailsById(requst){
 
 }
 
-function updateBookingDetails(request){
-    let data = request.body;
-    return BookingDetailsEntity.update(data, {
-        where: {
-            id: 48
-        },
-        returning: true // Optional: If you want to return the updated record
-    });
+async function updateBookingDetails(request){
+    let id = request.body.id;
+    const recordToUpdate = await bookingEntity.BookingDetailsEntity.findByPk(id);
+    if(!recordToUpdate){
+        return null;
+    }
+    return await recordToUpdate.update(request.body);
 }
 
 module.exports = {

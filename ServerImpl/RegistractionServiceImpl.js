@@ -12,6 +12,22 @@ function fetchRegistrationDetails(){
 
 }
 
+function fetchRegistrationDetailsById(email_id){
+    return regEntity.Registration.findByPk(email_id);
+}
+
+function loginValidation(request){
+    let emailID = request.body.email_id;
+    let password1 = request.body.password;
+    return regEntity.Registration.findOne({
+        where : {
+            email_id:emailID,
+            password: password1
+        }
+    })
+
+}
+
 module.exports = {
-    registractionLogin,fetchRegistrationDetails
+    registractionLogin,fetchRegistrationDetails,fetchRegistrationDetailsById,loginValidation
 }
