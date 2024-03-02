@@ -35,9 +35,11 @@ function decode(data){
     //or
     let decipher = crypto.createDecipheriv(ALGO, ENC, IV);
    let decrypted = decipher.update(data, 'base64', 'utf8');
-   console.log(decrypted + decipher.final('utf8'));
-   return (decrypted + decipher.final('utf8'));
+   decrypted += decipher.final('utf8');
+   console.log(decrypted);
+   return (decrypted);
 }
+
 
 module.exports = {
     encode, decode

@@ -87,8 +87,13 @@ const updateBookingDetails = function(req,res){
     try{
         let response = BookingImpl.updateBookingDetails(req);
         response.then((result)=>{
+            if(!result){
+            console.log("Record is not found in Database."+result);
+            res.send(ExceptionHandling.failuer("Record is not found in Database."));
+            }else{
             console.log(result._previousDataValues);
             res.send(ExceptionHandling.success(result._previousDataValues))
+            }
         }).catch((err)=>{
             console.log(err);
             res.send(ExceptionHandling.failuer(err.parent.detail));

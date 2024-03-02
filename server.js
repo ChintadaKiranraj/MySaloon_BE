@@ -1,6 +1,7 @@
 const express = require('express');
 const loginController = require('./contoller/RegistractionContoller');
 const bookingContoller = require('./contoller/BookingDetailsContoller')
+const authenticate = require('./Authorization')
 const app = express();
 
 app.listen(3001, () => {
@@ -8,10 +9,11 @@ app.listen(3001, () => {
 });
 app.use(express.json())
 
-app.post('/registraction-logn',loginController.loginRegistration);
-app.get('/fetch-registaction-details',loginController.fetchRegistrationDetails);
-app.post('/save-booking-details',bookingContoller.saveBookingDetails);
-app.get('/fetch-booking-details',bookingContoller.fetchBookingDetails);
-app.delete('/remove-booking-details',bookingContoller.removeBookingDetails);
-app.get('/fetch-booking-details-byid',bookingContoller.fetchBookingDetailsById);
-app.put('/update-booking-details-byid',bookingContoller.updateBookingDetails);
+app.post('/registraction-logn',authenticate.authenticate,loginController.loginRegistration);
+app.get('/fetch-registaction-details',authenticate.authenticate,loginController.fetchRegistrationDetails);
+app.post('/save-booking-details',authenticate.authenticate,bookingContoller.saveBookingDetails);
+app.get('/fetch-booking-details',authenticate.authenticate,bookingContoller.fetchBookingDetails);
+app.delete('/remove-booking-details',authenticate.authenticate,bookingContoller.removeBookingDetails);
+app.get('/fetch-booking-details-byid',authenticate.authenticate,bookingContoller.fetchBookingDetailsById);
+app.put('/update-booking-details-byid',authenticate.authenticate,bookingContoller.updateBookingDetails);
+app.get('/validation',loginController.loginValidation);
