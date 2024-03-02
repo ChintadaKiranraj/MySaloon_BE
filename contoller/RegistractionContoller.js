@@ -21,11 +21,10 @@ const loginRegistration = function (req, res) {
 
 const fetchRegistrationDetails = function(req, res){
     try{
-        req.headers;
         let response = registractionImpl.fetchRegistrationDetails();
         response.then((result)=>{
             console.log(result);
-            res.send(ExceptionHandling.success(result));
+            res.send(ExceptionHandling.success(ExceptionHandling.filterArray(result)));
         }).catch((err)=>{
             console.log(err);
             res.send(ExceptionHandling.failuer("fails"));
