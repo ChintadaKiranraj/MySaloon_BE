@@ -28,6 +28,15 @@ function loginValidation(request){
 
 }
 
+async function approvedAdminAccess(request){
+    let EmailID = request.body.emailId;
+    let fetch = await regEntity.Registration.findByPk(EmailID);
+    if(!fetch){
+        return null;
+    }
+    return await fetch.update(request.body);
+}
+
 module.exports = {
-    registractionLogin,fetchRegistrationDetails,fetchRegistrationDetailsById,loginValidation
+    registractionLogin,fetchRegistrationDetails,fetchRegistrationDetailsById,loginValidation,approvedAdminAccess
 }

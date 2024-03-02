@@ -128,8 +128,8 @@ const fetchBookingDetailsByEmailId = function(req,res){
         })
 
     }catch(err){
-        
-
+        console.log(err);
+        res.send(err.message);
     }
 
 }

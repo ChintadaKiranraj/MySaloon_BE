@@ -24,3 +24,4 @@ app.post('/fetch-booking-details-byid',authenticate.authenticate,bookingContolle
 app.put('/update-booking-details-byid',authenticate.authenticate,bookingContoller.updateBookingDetails);
 app.post('/validation',loginController.loginValidation);
 app.post('/fetch-booking-details-byEmail-id',authenticate.authenticate,bookingContoller.fetchBookingDetailsByEmailId);
+app.post('/approved-admin-access',authenticate.authenticate,loginController.approvedAdminAccess);
