@@ -17,11 +17,11 @@ function fetchRegistrationDetailsById(email_id){
 }
 
 function loginValidation(request){
-    let emailID = request.body.email_id;
+    let emailID = request.body.emailId;
     let password1 = request.body.password;
     return regEntity.Registration.findOne({
         where : {
-            email_id:emailID,
+            emailId:emailID,
             password: password1
         }
     })
