@@ -37,6 +37,14 @@ const Registration = seq.define('registration', {
     timestamps: false, 
 });
 
+Registration.sync({ alter: true }) // Use alter: true to make only necessary changes to sync the model
+    .then(() => {
+        console.log('BookingDetailsEntity table synchronized successfully');
+    })
+    .catch(error => {
+        console.error('Error synchronizing Registration table:', error);
+    });
+
 module.exports ={ 
     Registration,
 };

@@ -17,6 +17,15 @@ function failuer(message){
     return response;
 }
 
+function filterArray(data){
+    let array = [];
+    data.forEach((e)=>{
+        array.push(e._previousDataValues);
+    })
+    console.log(array);
+    return array;
+}
+
 module.exports = {
-    success, failuer
+    success, failuer,filterArray
 }
