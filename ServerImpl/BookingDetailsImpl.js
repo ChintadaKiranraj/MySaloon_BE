@@ -32,6 +32,16 @@ async function updateBookingDetails(request){
     return await recordToUpdate.update(request.body);
 }
 
+async function fetchBookingDetailsByEmailId(request){
+    let emailID = request.body.emailId;
+    return await bookingEntity.BookingDetailsEntity.findAll({
+        where:{
+            regEmialId:emailID
+        },returning: true
+    })
+
+}
+
 module.exports = {
-    saveBookingDetails,fetchBookingDetails,removeBookingDetails,fetchBookingDetailsById,updateBookingDetails
+    saveBookingDetails,fetchBookingDetails,removeBookingDetails,fetchBookingDetailsById,updateBookingDetails,fetchBookingDetailsByEmailId
 }

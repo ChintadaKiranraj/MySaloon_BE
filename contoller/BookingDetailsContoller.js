@@ -108,6 +108,32 @@ const updateBookingDetails = function(req,res){
     }
 }
 
+const fetchBookingDetailsByEmailId = function(req,res){
+    try{
+        let response = BookingImpl.fetchBookingDetailsByEmailId(req);
+        response.then((result)=>{
+            console.log(result);
+            if(!result){
+                res.send(ExceptionHandling.failuer("something went to rong"))
+            }{
+                res.send(ExceptionHandling.success(ExceptionHandling.filterArray(result)));
+            }
+        }).catch((err)=>{
+            console.log(err);
+            if(err.message != undefined){
+                res.send(ExceptionHandling.failuer(err.message));
+            }else{
+                res.send(ExceptionHandling.failuer(err.parent.detail));
+            }
+        })
+
+    }catch(err){
+        
+
+    }
+
+}
+
 module.exports= {
-    saveBookingDetails,fetchBookingDetails,removeBookingDetails,fetchBookingDetailsById,updateBookingDetails
+    saveBookingDetails,fetchBookingDetails,removeBookingDetails,fetchBookingDetailsById,updateBookingDetails,fetchBookingDetailsByEmailId
 }
