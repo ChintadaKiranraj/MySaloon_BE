@@ -1,6 +1,6 @@
 const { Model } = require("sequelize");
 const regEntity = require('../entity/RegistractionEntity');
-const exseption = require('../DataSecurity/ExceptionHandling')
+const exseption = require('../DataSecurity/ExceptionHandling');
 
 function registractionLogin(request){
     let data = request.body;
@@ -37,6 +37,13 @@ async function approvedAdminAccess(request){
     return await fetch.update(request.body);
 }
 
+async function removeRegistedUser(request){
+    let emailID = request.body.emailId;
+    return await regEntity.Registration.destroy({
+        where:{emailId:emailID},returning: true
+    });
+}
+
 module.exports = {
-    registractionLogin,fetchRegistrationDetails,fetchRegistrationDetailsById,loginValidation,approvedAdminAccess
+    registractionLogin,fetchRegistrationDetails,fetchRegistrationDetailsById,loginValidation,approvedAdminAccess,removeRegistedUser
 }

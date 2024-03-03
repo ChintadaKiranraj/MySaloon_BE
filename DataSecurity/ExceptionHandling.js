@@ -2,7 +2,7 @@ const encodedecoding = require('../DataSecurity/EncodeDecode')
 
 function success(data){
     let response = {};
-    let  responseData = encodedecoding.encode(data);
+    // let  responseData = encodedecoding.encode(data);
     response.message = 'sucess!',
     response.status = true,
     response.data = data
