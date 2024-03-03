@@ -87,6 +87,31 @@ const approvedAdminAccess = function(req,res){
     console.log(err);
     res.send(err.message);
 }}
+
+const removeRegistedUser = function(req,res){
+    try{
+        let response = registractionImpl.removeRegistedUser(req);
+
+
+        response.then((result)=>{
+            console.log(result);
+            if(!result){
+                res.send(ExceptionHandling.failuer("recordes not found"))
+            }{
+                res.send(ExceptionHandling.success(result));
+            }
+        }).catch((err)=>{
+            console.log(err);
+            if(err.message != undefined){
+                res.send(ExceptionHandling.failuer(err.message));
+            }else{
+                res.send(ExceptionHandling.failuer(err.parent.detail));
+            }
+        })
+    }catch(err){
+        console.log(err);
+        res.send(err.message);
+    }}
 // const authentication = function(headerRequest,res){
 //     let authenticationResponse = {};
 //     try{
@@ -126,5 +151,5 @@ const approvedAdminAccess = function(req,res){
 
 
 module.exports = {
-    loginRegistration,fetchRegistrationDetails,loginValidation,approvedAdminAccess
+    loginRegistration,fetchRegistrationDetails,loginValidation,approvedAdminAccess,removeRegistedUser
 }
