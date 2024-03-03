@@ -15,15 +15,16 @@ app.use(cors({
     credentials: true,
 }));
 
-app.post('/registraction-logn',loginController.loginRegistration);
+app.post('/save-registraction-details',loginController.loginRegistration);
+app.post('/validation',loginController.loginValidation);
+app.post('/approved-admin-access',authenticate.authenticate,loginController.approvedAdminAccess);
+app.delete('/remove-registred-user',authenticate.authenticate,loginController.removeRegistedUser);
 app.get('/fetch-registaction-details',authenticate.authenticate,loginController.fetchRegistrationDetails);
 app.post('/save-booking-details',authenticate.authenticate,bookingContoller.saveBookingDetails);
 app.get('/fetch-booking-details',authenticate.authenticate,bookingContoller.fetchBookingDetails);
 app.delete('/remove-booking-details',authenticate.authenticate,bookingContoller.removeBookingDetails);
 app.post('/fetch-booking-details-byid',authenticate.authenticate,bookingContoller.fetchBookingDetailsById);
 app.put('/update-booking-details-byid',authenticate.authenticate,bookingContoller.updateBookingDetails);
-app.post('/validation',loginController.loginValidation);
 app.post('/fetch-booking-details-byEmail-id',authenticate.authenticate,bookingContoller.fetchBookingDetailsByEmailId);
-app.post('/approved-admin-access',authenticate.authenticate,loginController.approvedAdminAccess);
-app.delete('/remove-registred-user',loginController.removeRegistedUser);
+
 
