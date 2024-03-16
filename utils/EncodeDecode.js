@@ -5,6 +5,11 @@ const ENC= 'bf3c199c2470cb477d907b1e0917c17b';
 const IV = "5183666c72eec9e4";
 const ALGO = "aes-256-cbc"
 
+
+function base64Decode(encodeString){
+    return Buffer.from(encodeString, 'base64').toString('utf-8'); 
+}
+
 function encode(data){
     // window.btoa(data);
      //or
@@ -42,5 +47,5 @@ function decode(data){
 
 
 module.exports = {
-    encode, decode
+    encode, decode,base64Decode
 }
