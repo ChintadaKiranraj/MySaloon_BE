@@ -1,4 +1,4 @@
-const encodedecoding = require('../DataSecurity/EncodeDecode')
+const encodedecoding = require('./EncodeDecode')
 
 function success(data){
     let response = {};
@@ -27,5 +27,5 @@ function filterArray(data){
 }
 
 module.exports = {
-    success, failuer,filterArray
+    success, failuer,filterArray,
 }
