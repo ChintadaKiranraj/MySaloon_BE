@@ -4,10 +4,11 @@ const express = require('express');
 const UserRoutes = require('./routes/UsersRoutes');
 const SopRoutes = require('./routes/ShopOwnersRoutes');
 const Barber = require('./routes/BarberApplicationRoute');
+const UserBooking = require('./routes/UserBookingRoute')
 const app = express();
 
-app.listen(4002, () => {
-  console.log('server started on port 4002');
+app.listen(4004, () => {
+  console.log('server started on port 4004');
 });
 app.use(express.json())
 const cors = require("cors");
@@ -20,5 +21,7 @@ app.use(cors({
 app.use('', UserRoutes.router);
 app.use('', SopRoutes.router);
 app.use('',Barber.router);
+app.use('',UserBooking.router);
+// app.use('',);
 
 

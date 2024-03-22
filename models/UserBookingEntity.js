@@ -1,43 +1,60 @@
-// const { DataTypes } = require('sequelize');
-// const sequelize = require('../config/postgreSQL');
-// const seq = sequelize.sequences;
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/postgreSQL');
+const { Users } = require('./Users');
+const { ShopOwners } = require('./ShopOwnersEntity');
+const { BarberApplication } = require('./BarberApplicationsEntity');
+const seq = sequelize.sequences;
 
-// const BookingDetailsEntity = seq.define('booking_details', {
-//     id: {
-//         type: DataTypes.INTEGER,
-//         autoIncrement: true,
-//         allowNull: false,
-//         primaryKey: true
-//     },
-//     name: {
-//         type: DataTypes.STRING,
-//         allowNull: false
-//     },
-//     time: {
-//         type: DataTypes.STRING,
-//         allowNull: false
-//     },
-//     status: {
-//         type: DataTypes.STRING,
-//         allowNull: false
-//     },
-//     regEmialId: {
-//         type: DataTypes.STRING,
-//         allowNull: false
-//     }
-// }, {
-//     tableName: 'booking_details',
-//     schema: 'public',
-//     timestamps: false
-// });
+const BookingDetailsEntity = seq.define('user_booking', {
+    bookingId: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    location: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    shopName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    barberId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    shopOwnerId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    booking_date_time: {
+        type: DataTypes.DATE,
+        allowNull:false
+    },
+    status: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+}, {
+    tableName: 'user_booking',
+    schema: 'public',
+    timestamps: false
+});
 
-// // Synchronize the model with the database to ensure the table exists
-// BookingDetailsEntity.sync({ alter: true }) // Use alter: true to make only necessary changes to sync the model
-//     .then(() => {
-//         console.log('BookingDetailsEntity table synchronized successfully');
-//     })
-//     .catch(error => {
-//         console.error('Error synchronizing BookingDetailsEntity table:', error);
-//     });
+BookingDetailsEntity.sync({ alter: true }) 
+    .then(() => {
+        console.log('UserBookingDetailsEntity table synchronized successfully');
+    })
+    .catch(error => {
+        console.error('Error synchronizing BookingDetailsEntity table:', error);
+    });
+BookingDetailsEntity.belongsTo(Users, {foreignKey : 'userId'});
+BookingDetailsEntity.belongsTo(ShopOwners, {foreignKey : 'shopOwnerId'});
+BookingDetailsEntity.belongsTo(BarberApplication, {foreignKey: 'barberId'})
 
-// module.exports = {BookingDetailsEntity};
+module.exports = {BookingDetailsEntity};

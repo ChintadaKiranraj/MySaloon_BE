@@ -23,6 +23,9 @@ function generateToken(user) {
 
 function authenticate(req, res, next) {
     let token = req.headers.authorization;
+    if(!token){
+        return res.status(401).json({ error: 'Unauthorized: No token provided' });
+    }
     let token2 = token.split(' ');
     token = token2[1];
     if (!token && token2[0] != 'Bearer') {
