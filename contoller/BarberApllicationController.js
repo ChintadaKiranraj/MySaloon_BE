@@ -201,4 +201,18 @@ const fetchThreeTableData = function(req,res){
     }
 }
 
-module.exports = {save,fetchAll,fetchByShapoIdLocationStatus,fetchThreeTableData,fetchByShoipeIdAndStatus,fetchByShoipeId}
+const deleteById = function(req,res){
+    let barberId = req.params.barberId;
+    BarberApplication.destroy({
+        where: {barberId:barberId}
+    }).then((result)=>{
+        console.log(result);
+        res.send(success(result));
+    }).catch((error)=>{
+        console.log(error);
+        res.send(error.message);
+    })
+
+}
+
+module.exports = {save,fetchAll,fetchByShapoIdLocationStatus,fetchThreeTableData,fetchByShoipeIdAndStatus,fetchByShoipeId,deleteById}
