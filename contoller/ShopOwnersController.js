@@ -1,7 +1,6 @@
 const {ShopOwners} = require('../models/ShopOwnersEntity');
 const { Users } = require('../models/Users');
 const imageDecode = require('../utils/EncodeDecode')
-const ShopOwnerDTO = require('../utils/ShopeOwnerDTO')
 
 const saveShopeOwners = function(req,res){
     ShopOwners.create(req.body).then((result)=>{
