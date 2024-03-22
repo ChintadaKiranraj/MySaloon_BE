@@ -1,5 +1,7 @@
 const {ShopOwners} = require('../models/ShopOwnersEntity');
+const { Users } = require('../models/Users');
 const imageDecode = require('../utils/EncodeDecode')
+const ShopOwnerDTO = require('../utils/ShopeOwnerDTO')
 
 const saveShopeOwners = function(req,res){
     ShopOwners.create(req.body).then((result)=>{
@@ -109,19 +111,57 @@ const fetchByPrimaryKey = async function(req,res){
     })
 }
 
-const fetchByBasedOnLocation = function(req,res){
+const convertShopOwnerDTOObject = function(data){
+    let result = data.dataValues;
+    let arrayOfObject = new Array;
+    //let arraofObject = [];
+    data.forEach(e=>{
+        let ShopOwnerDTO = {};
+        let result = e.dataValues;
+        ShopOwnerDTO.shopName = result.shopName;
+        ShopOwnerDTO.shopeOwnerId = result.shopOwnerId;
+        ShopOwnerDTO.profile = (result.profile != null) ? imageDecode.base64Decode(result.profile) : null;
+        ShopOwnerDTO.location = result.location;
+        ShopOwnerDTO.emailId = result.user.emailId;
+        ShopOwnerDTO.firstName = result.user.firstName;
+        ShopOwnerDTO.lastName = result.lastName;
+        ShopOwnerDTO.userId = result.userId;
+        arrayOfObject.push(ShopOwnerDTO);
+    });
+    return arrayOfObject;
+
+}
+
+// const fetchByBasedOnLocation = function(req,res){
+//     ShopOwners.findAll({
+//         where:{
+//             location :req.params.shopeLocation
+//         }
+//     }).then((result)=>{
+//         console.log(result);
+//         imageConvert(result);
+//         res.send(sucess(result));
+//     }).catch((error)=>{
+//         console.log(error);
+//         res.send(faild(error.message));
+//     })
+// };
+
+const fetchByBasedOnLocation2 = function(req,res){
     ShopOwners.findAll({
+        include:[{model:Users}],
         where:{
             location :req.params.shopeLocation
         }
     }).then((result)=>{
         console.log(result);
-        imageConvert(result);
-        res.send(sucess(result));
+        let response = convertShopOwnerDTOObject(result);
+        res.send(sucess(response));
     }).catch((error)=>{
         console.log(error);
         res.send(faild(error.message));
     })
+    
 }
 
-module.exports = {saveShopeOwners,fetchShopeOwnerByUserId,updateShopOwner,fetchAllShopeLocation, fetchAll,fetchByPrimaryKey,fetchByBasedOnLocation}
+module.exports = {saveShopeOwners,fetchShopeOwnerByUserId,updateShopOwner,fetchAllShopeLocation, fetchAll,fetchByPrimaryKey,fetchByBasedOnLocation2}
