@@ -2,9 +2,6 @@ const {BarberApplication} = require('../models/BarberApplicationsEntity');
 const { ShopOwners } = require('../models/ShopOwnersEntity');
 const { Users } = require('../models/Users');
 const imageConvert = require('../utils/EncodeDecode')
-const BarberApplicationDTO = require('../utils/BarberApplicationDTO')
-
-
 
 const success = function(data){
     let successResponse = {};
