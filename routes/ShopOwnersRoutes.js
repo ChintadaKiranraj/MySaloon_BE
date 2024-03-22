@@ -8,12 +8,6 @@ router.post('/update-shope-owner', jwtToken.authenticate,ShopOwnersController.up
 router.get('/fetch-by-shopeid/:shopeOwnerId',ShopOwnersController.fetchByPrimaryKey);
 router.get('/fetch-shope-location', jwtToken.authenticate,ShopOwnersController.fetchAllShopeLocation);
 router.get('/fetch-all-shopeowner', jwtToken.authenticate,ShopOwnersController.fetchAll);
-//above all api is nice check below api's
-
-router.get('/fetch-by-location/:shopeLocation',ShopOwnersController.fetchByBasedOnLocation2); //done
-
-
-//above api need user table firstName,lastName,emailId,phoneNumber
-
+router.get('/fetch-by-location/:shopeLocation', jwtToken.authenticate,ShopOwnersController.fetchByBasedOnLocation2); //done
 
 module.exports = {router}
