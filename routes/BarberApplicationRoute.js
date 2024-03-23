@@ -10,7 +10,6 @@ router.get('/fetch-baebers-by-status-shoipe-id/:shoipeId/:status',BarberControll
 router.get('/fetch-barbers-all-by-status/:shoipeId',BarberController.fetchByShoipeId);
 router.delete('/delete-baeber-by-barberId/:barberId',BarberController.deleteById);
 
-
 router.get('/test',BarberController.fetchThreeTableData);
 
 
