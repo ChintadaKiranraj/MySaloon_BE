@@ -60,7 +60,6 @@ const fetchAll = function(req,res){
     })
 };
 
-
 const convertToBarberApplicationDTOs = function(result) {
     let arrayOfObject = [];
     result.forEach(e => {
@@ -83,7 +82,7 @@ const convertToBarberApplicationDTOs = function(result) {
         arrayOfObject.push(barberApplicationDTO);
     });
     return arrayOfObject;
-}
+};
 
 const fetchByShapoIdLocationStatus = function(req,res){
     BarberApplication.findAll({ where: { 
@@ -105,8 +104,6 @@ const fetchByShapoIdLocationStatus = function(req,res){
         res.status(400).send(error.message);
     });
 };
-
-
 
 const convertToBarberApplicationDTOs2 = function(result) {
     let arrayOfObject = [];
@@ -131,7 +128,7 @@ const convertToBarberApplicationDTOs2 = function(result) {
         arrayOfObject.push(barberApplicationDTO);
     });
     return arrayOfObject;
-}
+};
 
 const fetchByShoipeIdAndStatus = function(req,res){
     let body = req.params;
@@ -150,8 +147,7 @@ const fetchByShoipeIdAndStatus = function(req,res){
         console.log(error);
         res.send(faild(error.message));
     })
-}
-
+};
 
 const fetchByShoipeId = function(req,res){
     let body = req.params;
@@ -171,9 +167,7 @@ const fetchByShoipeId = function(req,res){
         console.log(error);
         res.send(faild(error.message));
     })
-}
-
-
+};
 
 const fetchThreeTableData = function(req,res){
     try{
@@ -199,7 +193,7 @@ const fetchThreeTableData = function(req,res){
         console.log(eero);
         res.send(eero);
     }
-}
+};
 
 const deleteById = function(req,res){
     let barberId = req.params.barberId;
@@ -213,6 +207,6 @@ const deleteById = function(req,res){
         res.send(error.message);
     })
 
-}
+};
 
 module.exports = {save,fetchAll,fetchByShapoIdLocationStatus,fetchThreeTableData,fetchByShoipeIdAndStatus,fetchByShoipeId,deleteById}
