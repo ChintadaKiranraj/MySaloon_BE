@@ -9,22 +9,6 @@ const Users = seq.define('users', {
         autoIncrement: true,
         allowNull: false
     },
-    userName: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    confirmPassword: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    userType: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     firstName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -38,19 +22,27 @@ const Users = seq.define('users', {
         allowNull: false,
         unique: true 
     },
-    registrationDate: {
+    password: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
+    },
+    confirmPassword: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    phoneNumber:{
+        type:DataTypes.STRING,
+        allowNull:false
     },
     profilePhoto: {
         type: DataTypes.BLOB,
         allowNull: true
     },
-    experience: {
-        type: DataTypes.INTEGER,
-        allowNull: true
+    userType: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    description: {
+    registrationDate: {
         type: DataTypes.STRING,
         allowNull: true
     }

@@ -9,5 +9,6 @@ router.get('/fetch-by-shopeid/:shopeOwnerId',ShopOwnersController.fetchByPrimary
 router.get('/fetch-shope-location', jwtToken.authenticate,ShopOwnersController.fetchAllShopeLocation);
 router.get('/fetch-all-shopeowner', jwtToken.authenticate,ShopOwnersController.fetchAll);
 router.get('/fetch-by-location/:shopeLocation', jwtToken.authenticate,ShopOwnersController.fetchByBasedOnLocation2); //done
+router.delete('/delete-shop-byId/:shopOwnerId',ShopOwnersController.deleteByShopById);
 
 module.exports = {router}

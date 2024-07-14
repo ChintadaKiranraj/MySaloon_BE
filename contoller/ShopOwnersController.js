@@ -1,6 +1,8 @@
+const { where } = require('sequelize');
 const {ShopOwners} = require('../models/ShopOwnersEntity');
 const { Users } = require('../models/Users');
-const imageDecode = require('../utils/EncodeDecode')
+const imageDecode = require('../utils/EncodeDecode');
+const { response } = require('express');
 
 const saveShopeOwners = function(req,res){
     ShopOwners.create(req.body).then((result)=>{
@@ -88,8 +90,6 @@ const fetchAll = function(req,res){
         if(result!=null){
         imageConvert(result);
         }
-        const image = result[7].profile.toString('base64')
-        console.log(image);
         res.send(sucess(result))
 
     }).catch((error)=>{
@@ -163,4 +163,16 @@ const fetchByBasedOnLocation2 = function(req,res){
     
 }
 
-module.exports = {saveShopeOwners,fetchShopeOwnerByUserId,updateShopOwner,fetchAllShopeLocation, fetchAll,fetchByPrimaryKey,fetchByBasedOnLocation2}
+const deleteByShopById = function(req,res){
+    console.log(req)
+    ShopOwners.destroy({where:{shopOwnerId:req.params.shopOwnerId}})
+    .then((response)=>{
+        console.log(response);
+        res.send(sucess(response));
+    }).catch((error)=>{
+        console.log(error);
+        res.status(400).send(error.message);
+    })
+}
+
+module.exports = {saveShopeOwners,fetchShopeOwnerByUserId,updateShopOwner,fetchAllShopeLocation, fetchAll,fetchByPrimaryKey,fetchByBasedOnLocation2,deleteByShopById}

@@ -13,7 +13,7 @@ app.listen(4004, () => {
 app.use(express.json())
 const cors = require("cors");
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:4200',
     optionsSuccessStatus: 200,
     credentials: true,
 }));
